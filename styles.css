@@ -16,3 +16,12 @@
     --fs-footer: 0.75rem;
 }
 
+body.dark-mode {
+    --clr-background: #121212;
+    --clr-surface: #1E1E1E;
+    --clr-primary-text: #EAEAEA;
+    --clr-secondary-text: #A0A0A0;
+    --clr-shadow: rgba(255, 255, 255, 0.8);
+    --logo-filter: invert(1) brightness(2);
+}
+
