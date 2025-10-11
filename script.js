@@ -29,8 +29,28 @@ function renderHeroPost() {
     }
 }
 
+function renderRecentPosts() {
+    const recentPosts = blogData.filter(post => post.id !== 'hero').slice(0, POSTS_TO_SHOW);
+    recentPostsGrid.innerHTML = recentPosts.map(post => getPostHTML(post)).join('');
+    postsDisplayed = recentPosts.length;
+}
+
+function getPostHTML(post) {
+    return `
+        <article class="blog-card" data-id="${post.id}">
+            <img src="${post.image}" alt="${post.alt}" class="blog-card-img" />
+            <div class="blog-card-content">
+                <p class="post-date">${post.date}</p>
+                <h2 class="post-title">${post.title}</h2>
+                <p class="post-content">${post.content}</p>
+            </div>
+        </article>`;
+    
+}
+ 
 function init() {
     renderHeroPost();
+    renderRecentPosts();
 }
 
 init();
