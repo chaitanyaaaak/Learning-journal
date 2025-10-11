@@ -13,8 +13,8 @@ const logo = document.getElementById('logo-link');
 const home = document.getElementById('home-link');
 const about = document.getElementById('about-me-link');
 
-const POSTS_TO_SHOW = 3;
-let postsDisplayed = 0;
+const POSTS_PER_PAGE = 3;
+let additionalPostsToShow = 0;
 
 function renderHeroPost() {
     const heroData = blogData.find(post => post.id === 'hero');
@@ -32,7 +32,7 @@ function renderHeroPost() {
 function renderRecentPosts() {
     const recentPosts = blogData.filter(post => post.id !== 'hero').slice(0, POSTS_TO_SHOW);
     recentPostsGrid.innerHTML = recentPosts.map(post => getPostHTML(post)).join('');
-    postsDisplayed = recentPosts.length;
+    additionalPostsToShow = recentPosts.length;
 }
 
 function getPostHTML(post) {
@@ -47,10 +47,20 @@ function getPostHTML(post) {
         </article>`;
     
 }
- 
+
+function renderAllPosts() {
+    const allPosts = blogData.filter(blog => blog.id !== 'hero').slice(3);
+    const totalPostsToShow = POSTS_PER_PAGE + additionalPostsToShow;
+    const postsToRender = allPosts.slice(0, totalPostsToShow);
+
+    blogGrid.innerHTML = postsToRender.map(post => getPostHTML(post)).join('');
+    viewMoreBtn.style.display = totalPostsToShow >= allPosts.length ? 'none' : 'block';
+}
+  
 function init() {
     renderHeroPost();
     renderRecentPosts();
+    renderAllPosts();
 }
 
 init();
