@@ -30,9 +30,18 @@ function renderHeroPost() {
 }
 
 function renderRecentPosts() {
-    const recentPosts = blogData.filter(post => post.id !== 'hero').slice(0, POSTS_TO_SHOW);
+    const recentPosts = blogData.filter(post => post.id !== 'hero').slice(0, POSTS_PER_PAGE);
     recentPostsGrid.innerHTML = recentPosts.map(post => getPostHTML(post)).join('');
-    additionalPostsToShow = recentPosts.length;
+}
+
+
+function renderAllPosts() {
+    const gridPosts = blogData.filter(blog => blog.id !== 'hero').slice(3);
+    const totalPostsToShow = POSTS_PER_PAGE + additionalPostsToShow;
+    const postsToRender = gridPosts.slice(0, totalPostsToShow);
+    
+    blogGrid.innerHTML = postsToRender.map(post => getPostHTML(post)).join('');
+    viewMoreBtn.style.display = totalPostsToShow >= gridPosts.length ? 'none' : 'block';
 }
 
 function getPostHTML(post) {
@@ -48,15 +57,28 @@ function getPostHTML(post) {
     
 }
 
-function renderAllPosts() {
-    const allPosts = blogData.filter(blog => blog.id !== 'hero').slice(3);
-    const totalPostsToShow = POSTS_PER_PAGE + additionalPostsToShow;
-    const postsToRender = allPosts.slice(0, totalPostsToShow);
+viewMoreBtn.addEventListener('click', () => {
+    additionalPostsToShow += POSTS_PER_PAGE;
+    renderAllPosts();
+})
 
-    blogGrid.innerHTML = postsToRender.map(post => getPostHTML(post)).join('');
-    viewMoreBtn.style.display = totalPostsToShow >= allPosts.length ? 'none' : 'block';
+function renderAboutMePage() {
+    aboutMePage.innerHTML = `
+        <div class="about-me-container">
+            <div class="about-me-content">
+                <img src="./Images/BG_Chaitanya.jpeg" alt="A portrait of Chaitanya" class="about-me-img" />
+
+                <div class="about-me-text">
+                    <h2>Hi there! My name is Chaitanya and welcome to my learning journal.</h2>
+                    <p>After several months of learning in the Frontend Developer Career Path, I've made the big jump over to the bootcamp to get expert code reviews of my Solo Projects and meet like-minded peers.</p>
+                    <p>I'm excited to document my journey as I tackle new challenges, master new technologies like AI and Full-Stack development, and grow as a developer. Follow along to see my progress!
+                    </p>
+                </div>
+            </div>
+        </div>`;  
 }
   
+
 function init() {
     renderHeroPost();
     renderRecentPosts();
