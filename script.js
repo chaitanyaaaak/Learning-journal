@@ -99,7 +99,7 @@ function renderAboutMePage() {
     aboutMePage.innerHTML = `
         <div class="about-me-container">
             <div class="about-me-content">
-                <img src="./Images/BG_Chaitanya.jpeg" alt="A portrait of Chaitanya" class="about-me-img" />
+                <img src="./Images/profile.png" alt="A portrait of Chaitanya" class="about-me-img" />
 
                 <div class="about-me-text">
                     <h2>Hi there! My name is Chaitanya and welcome to my learning journal.</h2>
