@@ -4,7 +4,8 @@ A fully responsive, multi-page personal blog designed to document my web develop
 
 ---
 
-### 🚀 [**Live Demo**](https://learning-journal-ck.netlify.app/)
+### 🚀 **Live Demo:** [Learning journal](https://learning-journal-ck.netlify.app/)
+
 
 
 ---
